@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+
+@mixin typhography($size, $weight, $color) {
+  color: $color;
+  font-weight: $weight;
+  font-family: Ubuntu, sans-serif;
+
+  @if $size ==small {
+    font-size: 14px;
+    line-height: normal;
+  }
+
+  @else if $size ==medium {
+    font-size: 20px;
+    line-height: 150%;
+  }
+
+  @else if $size ==big {
+    font-size: 32px;
+    line-height: 150%;
+  }
+}

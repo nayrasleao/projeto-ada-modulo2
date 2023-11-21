@@ -1,0 +1,27 @@
+{
+  "name": "cartao_de_links",
+  "version": "1.0.0",
+  "description": "Cartão de Visita Online contendo links externos.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \\\"Error: no test specified\\\" && exit 1"
+  },
+  "keywords": [
+    "gulp",
+    "sass"
+  ],
+  "author": "Nayra Leão",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^9.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssnano": "^2.1.3",
+    "gulp-sass": "^5.1.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-uglify": "^3.0.2",
+    "node-sass": "^9.0.0",
+    "sass": "^1.69.5"
+  }
+}

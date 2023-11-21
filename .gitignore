@@ -1,0 +1,7 @@
+# Arquivos temporários
+*.log
+*.tmp
+
+# Diretórios
+node_modules/
+.vscode/
