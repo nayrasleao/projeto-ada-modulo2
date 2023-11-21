@@ -18,11 +18,8 @@ Dentre as funcionalidades, espera-se que seja possível:
 
 Não haverá a persistência das tarefas em banco de dados. Para isso, podem utilizar um array para armazenar a lista das tarefas cadastradas.
 
-<aside>
-💡 **Sugestão:** Utilize `prompt` para entrada de dados e `console.log` para saida dos dados. Também será aceito o uso de uma pagina `HTML`,  lembrando que não é obrigatório. 
 
 
-</aside>
 ## Alunos :woman_cartwheeling:
 <a href="https://github.com/N3th3rL0rd"> Carlos Gabriel </a><br>
 <a href="https://github.com/portellaluana"> Luana Portella </a><br>
