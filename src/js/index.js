@@ -1,20 +1,26 @@
-function enviaTarefa() {
-  const input = document.getElementById("input")
-  const lista = document.getElementById("lista")
+const input = document.getElementById("input")
+const lista = document.getElementById("lista")
 
-  //criar tarefa com enter
+
+function enviaTarefa() {
   if (input.value !== "" && input.value !== null && input.value !== undefined) {
-    const novaTarefa = document.createElement("li")
-    novaTarefa.innerText = input.value
+    const li = document.createElement("li")
+    li.innerText = input.value
 
     const btn = document.createElement("button")
     btn.innerText = "x"
     btn.onclick = function () {
-      lista.removeChild(novaTarefa)
+      lista.removeChild(li)
     }
-
-    novaTarefa.appendChild(btn)
-    lista.appendChild(novaTarefa)
+    
+    li.appendChild(btn)
+    lista.appendChild(li)
     input.value = ""
-  }
+  } else alert('Digite uma tarefa válida')
 }
+
+input.addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') {
+    enviaTarefa()
+  }
+});
