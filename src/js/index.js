@@ -17,6 +17,13 @@ function enviaTarefa() {
     lista.appendChild(li)
     input.value = ""
   } else alert('Digite uma tarefa válida')
+
+
+    // Adicionar um evento de clique para riscar/desriscar a tarefa
+    novaTarefa.addEventListener("click", function () {
+    novaTarefa.classList.toggle("concluido")
+    })
+  }
 }
 
 input.addEventListener('keypress', function(e) {
