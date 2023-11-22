@@ -15,5 +15,10 @@ function enviaTarefa() {
     novaTarefa.appendChild(btn)
     lista.appendChild(novaTarefa)
     input.value = ""
+
+    // Adicionar um evento de clique para riscar/desriscar a tarefa
+    novaTarefa.addEventListener("click", function () {
+    novaTarefa.classList.toggle("concluido")
+    })
   }
 }

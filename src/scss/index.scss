@@ -83,3 +83,9 @@ input {
 .delete {
   display: none;
 }
+
+.concluido {
+  background: $secondary !important;
+  color: $text;
+  text-decoration: line-through;
+}
