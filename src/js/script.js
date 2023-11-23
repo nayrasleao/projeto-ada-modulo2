@@ -63,13 +63,10 @@ function listTasks() {
 function getTaskById(taskId) {
   var taskId;
   taskId = prompt("Digite o ID da Tarefa: ");
-  return (this.task = tasks.find((tasks) => tasks.id == taskId));
+  const task = tasks.find((tasks) => tasks.id == taskId);
+  if (task) {
+    return task;
+  } else {
+    console.log("Tarefa não encontrada!");
+  }
 }
-
-addTask();
-addTask();
-editTaskName();
-editTaskStatus();
-removeTask();
-listTasks();
-getTaskById();
