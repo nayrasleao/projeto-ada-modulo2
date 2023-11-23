@@ -1,5 +1,6 @@
 # projeto-ada-modulo2 - Grupo 8 (ADA - VEM SER TECH)</a>
 Lógica de Programação I (JS/TS), Lista de Tarefas (To Do List).
+https://nayrasleao.github.io/projeto-ada-modulo2/
 
 ## Descrição
 Desenvolver, utilizando os conceitos abordados ao longo do módulo, uma aplicação de lista de tarefas
