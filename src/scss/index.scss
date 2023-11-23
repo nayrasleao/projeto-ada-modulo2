@@ -1,26 +1,27 @@
 @import '../variables/index.scss';
 
-* {
+#body {
+  @include typhography(normal, 500, $text);
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
-
-body .container{
   background-color: $primaryBackground;
-  text-align: center;
-  @include typhography (normal, 500, $text);
   height: 100vh;
-  width: 100%;
 }
 
-
-h1 {
-  text-transform: uppercase;
+#body h1{
+  margin: 20px auto;
+  text-align: center;
 }
 
+.container {
+  max-width: 600px;
+  background-color: $containerBackground;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px $primary;
+}
 
-#enter {
+button.btn {
   border: none;
   padding: 5px 15px;
   border-radius: 5px;
@@ -32,60 +33,41 @@ h1 {
   -o-transition: all 0.75 ease;
 }
 
-#enter:hover {
+button.btn:hover {
   background-color: $secondary;
   color: $text;
 }
 
-ul {
-  margin-top: 250px;
+ul {  
+  list-style: none;
+  padding: 50px 0;
 }
-
 
 li {
-  list-style: none;
-  padding: 10px 20px;
-  @include typhography(medium, 600, $text);
-  text-transform: capitalize;
-  border: 2px solid $primary;
-  border-radius: 5px;
-  margin: 30px 0;
-  background: $containerBackground;
-  transition: all 0.75s ease;
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -ms-transition: all 0.5s ease;
-  -o-transition: all 0.5 ease;
+  background-color: $primaryBackground;
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
 }
 
-li:hover {
-  background: $primary; 
+li:hover{
+  background-color: $primary;
   color: $primaryBackground;
 }
 
-li>button {
-  font-weight: normal;
-  background: none;
-  border: none;
-  float: right;
-  color: $text;
-  font-weight: 800;
-}
-
-input {
-  border-radius: 5px;
-  min-width: 65%;
-  padding: 5px;
-  border: none;
-}
-
-
-.delete {
-  display: none;
+button {
+  cursor: pointer;
 }
 
 .concluido {
   background: $secondary !important;
   color: $text;
   text-decoration: line-through;
+}
+
+.atrasado {
+  background-color: red !important;
+  color: white;
 }
