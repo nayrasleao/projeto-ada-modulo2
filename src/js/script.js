@@ -15,7 +15,7 @@ function addTask(name, status) {
   id = tasks.length + 1;
   const task = new Task(name, status, id);
   tasks.push(task);
-  console.log(tasks);
+  return tasks;
 }
 
 function editTaskName(taskId, newName) {
@@ -25,7 +25,7 @@ function editTaskName(taskId, newName) {
   if (task) {
     newName = prompt("Digite o novo nome da Tarefa: ");
     task.name = newName;
-    console.log(tasks);
+    return tasks;
   } else {
     console.log("Tarefa não encontrada!");
   }
@@ -38,7 +38,7 @@ function editTaskStatus(taskId, newStatus) {
   if (task) {
     newStatus = prompt("Digite o novo status da Tarefa: ");
     task.status = newStatus;
-    console.log(tasks);
+    return tasks;
   } else {
     console.log("Tarefa não encontrada!");
   }
@@ -50,21 +50,19 @@ function removeTask(taskId) {
   const task = tasks.find((tasks) => tasks.id == taskId);
   if (task) {
     tasks.splice(taskId - 1, 1);
-    console.log(tasks);
+    return tasks;
   } else {
     console.log("Tarefa não encontrada!");
   }
 }
 
 function listTasks() {
-  console.log(tasks);
   return tasks;
 }
 
 function getTaskById(taskId) {
   var taskId;
   taskId = prompt("Digite o ID da Tarefa: ");
-  console.log(tasks.find((tasks) => tasks.id == taskId));
   return (this.task = tasks.find((tasks) => tasks.id == taskId));
 }
 
