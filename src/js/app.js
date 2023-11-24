@@ -7,19 +7,27 @@ function Task(name, status, id) {
 }
 
 function addTask() {
-  var name = document.getElementById("inputName").value
-  var status = "Em andamento"
+  var name = document.getElementById("inputName").value.trim();
+  var status = "Em andamento";
 
   if (name && status) {
-    var id = tasks.length + 1
-    const task = new Task(name, status, id)
-    tasks.push(task)
-    updateTaskList()
-    document.getElementById("inputName").value = ""
+    // Verifica se a tarefa já existe pelo nome
+    const tarefaExiste = tasks.find(task => task.name.toLowerCase() === name.toLowerCase());
+
+    if (tarefaExiste) {
+      alert("Essa tarefa já existe na lista.");
+    } else {
+      var id = tasks.length + 1;
+      const task = new Task(name, status, id);
+      tasks.push(task);
+      updateTaskList();
+      document.getElementById("inputName").value = "";
+    }
   } else {
-    alert("Por favor, preencha todos os campos.")
+    alert("Por favor, preencha todos os campos.");
   }
 }
+
 
 function editTaskName(taskId) {
   const task = tasks.find((task) => task.id == taskId)
@@ -37,11 +45,8 @@ function editTaskName(taskId) {
 function editTaskStatus(taskId) {
   var task = tasks.find((task) => task.id === taskId)
   if (task) {
-    // Obtém o valor selecionado do menu suspenso
     var statusSelect = document.getElementById(`statusSelect_${taskId}`)
     var newStatus = statusSelect.options[statusSelect.selectedIndex].value
-
-    // Atualiza o status da tarefa
     task.status = newStatus
     updateTaskList()
   } else {
@@ -63,28 +68,43 @@ function listTasks() {
   updateTaskList()
 }
 
-function getTaskById() {
-  var taskId = document.getElementById("inputId").value
-  const task = tasks.find((task) => task.id == taskId)
-
-  if (task) {
-    alert(`Tarefa encontrada: ${task.id} - ${task.name}, ${task.status}`)
+function getTaskByIdOrName() {
+  var nameOrId = document.getElementById("inputId").value.trim()
+  
+  if (!isNaN(nameOrId) && nameOrId !== '') {
+    const task = tasks.find((task) => task.id == nameOrId)
+  
+    if (task) {
+      alert(`Tarefa encontrada: ${task.id} - ${task.name}, ${task.status}`)
+    } else {
+      alert("Tarefa não encontrada!")
+    }
   } else {
-    alert("Tarefa não encontrada!")
+
+//precisei mudar o input no html pq se não for number ele procura pelo nome
+    const searchTerm = nameOrId.toLowerCase()
+    const filteredTasks = tasks.filter(task => task.name.toLowerCase().includes(searchTerm))
+  
+    if (filteredTasks.length > 0) {
+      var searchResult = "Tarefas encontradas com o nome '" + searchTerm + "':\n\n"
+      filteredTasks.forEach(task => {
+        searchResult += `${task.id} - ${task.name}, ${task.status}\n`
+      })
+      alert(searchResult)
+    } else {
+      alert(`Nenhuma tarefa encontrada com o nome '${searchTerm}'.`)
+    }
   }
 }
 
+
 function updateTaskList() {
   var taskList = document.getElementById("taskList")
-
-  // Limpa a lista antes de adicionar as tarefas atualizadas
   taskList.innerHTML = ""
 
-  // Itera a lista de tarefas e adiciona item a item
   tasks.forEach(function (task) {
     var li = document.createElement("li")
 
-    // Adiciona classes com base no status da tarefa
     if (task.status === "Concluído") {
       li.classList.add("concluido")
     } else if (task.status === "Atrasado") {
@@ -92,36 +112,36 @@ function updateTaskList() {
     }
     li.innerHTML = `
     <div>
-            <span>${task.id} - ${task.name}, ${task.status}</span>
+      <span>${task.id} - ${task.name}, ${task.status}</span>
     </div>
     <div>
-<!-- Modificação: Adiciona um menu suspenso (select) para o status -->
-        Status: <select class="" id="statusSelect_${
-          task.id
-        }" onchange="editTaskStatus(${task.id})">
-          <option value="Em Andamento" ${
-            task.status === "Em Andamento" ? "selected" : ""
-          }>Em Andamento</option>
-          <option value="Atrasado" ${
-            task.status === "Atrasado" ? "selected" : ""
-          }>Atrasado</option>
-          <option value="Concluído" ${
-            task.status === "Concluído" ? "selected" : ""
-          }>Concluído</option>
-        </select>
-            <button class="btn" onclick="editTaskName(${
-              task.id
-            })">Editar Nome</button>
-            <button class="btn" onclick="removeTask(${
-              task.id
-            })">Remover</button>
-        </div>
-        `
+      Status: <select class="" id="statusSelect_${task.id}" onchange="editTaskStatus(${task.id})">
+        <option value="Em Andamento" ${task.status === "Em Andamento" ? "selected" : ""}>Em Andamento</option>
+        <option value="Atrasado" ${task.status === "Atrasado" ? "selected" : ""}>Atrasado</option>
+        <option value="Concluído" ${task.status === "Concluído" ? "selected" : ""}>Concluído</option>
+      </select>
+      <button class="btn" onclick="editTaskName(${task.id})">Editar Nome</button>
+      <button class="btn" onclick="removeTask(${task.id})">Remover</button>
+    </div>
+    `
     taskList.appendChild(li)
   })
+
+  saveTasksToLocalStorage()
 }
 
-// Adicione event listeners aos botões e inputs
+function saveTasksToLocalStorage() {
+  localStorage.setItem("tasks", JSON.stringify(tasks))
+}
+
+window.addEventListener("DOMContentLoaded", function () {
+  var tarefasSalvas = localStorage.getItem("tasks")
+  if (tarefasSalvas) {
+    tasks = JSON.parse(tarefasSalvas)
+    updateTaskList()
+  }
+})
+
 document.getElementById("addTaskBtn").addEventListener("click", addTask)
 document.getElementById("listTasksBtn").addEventListener("click", listTasks)
-document.getElementById("getTaskByIdBtn").addEventListener("click", getTaskById)
+document.getElementById("getTaskByIdOrNameBtn").addEventListener("click", getTaskByIdOrName)
