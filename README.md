@@ -22,6 +22,6 @@ Não haverá a persistência das tarefas em banco de dados. Para isso, podem uti
 
 
 ## Alunos :woman_cartwheeling:
-<a href="https://github.com/N3th3rL0rd"> Carlos Gabriel </a><br>
+<a href="https://github.com/N3th3rL0rd"> Carlos Gabryel </a><br>
 <a href="https://github.com/portellaluana"> Luana Portella </a><br>
 <a href="https://github.com/nayrasleao"> Nayra De Souza Leão </a><br>
